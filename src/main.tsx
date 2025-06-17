@@ -1,12 +1,17 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import state, { subscribe } from './warehouse/store.ts'
 
 import Layout from './Layout.tsx'
 
 import './main.css'
 
-createRoot(document.getElementById('root') as HTMLElement).render(
-  <StrictMode>
-    <Layout />
-  </StrictMode>,
-)
+const root = createRoot(document.getElementById('root') as HTMLElement)
+
+let rerenderTree = (): void => {
+  root.render(
+    <Layout state={state} />
+  )
+}
+
+rerenderTree()
+subscribe(rerenderTree)

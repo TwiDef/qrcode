@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import state, { subscribe } from './warehouse/store.ts'
+import store from './warehouse/store.ts'
 
 import Layout from './Layout.tsx'
 
@@ -9,9 +9,9 @@ const root = createRoot(document.getElementById('root') as HTMLElement)
 
 let rerenderTree = (): void => {
   root.render(
-    <Layout state={state} />
+    <Layout />
   )
 }
 
 rerenderTree()
-subscribe(rerenderTree)
+store.subscribe(rerenderTree)

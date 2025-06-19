@@ -1,19 +1,19 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
-import { dec, inc } from './warehouse/store';
+import store from './warehouse/store';
 
 type LayoutProps = {
-  state: any
+
 }
 
-const Layout: React.FC<LayoutProps> = ({ state }) => {
+const Layout: React.FC<LayoutProps> = () => {
+  const state = store.getState()
 
   return (
     <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
       <Button
         onClick={() => {
-          inc()
-          console.log(state)
+          store.inc()
         }}
         variant="contained">+</Button>
 
@@ -21,8 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ state }) => {
 
       <Button
         onClick={() => {
-          dec()
-          console.log(state)
+          store.dec()
         }}
         variant="contained">-</Button>
     </Box>

@@ -5,6 +5,7 @@ import Layout from './Layout.tsx'
 
 import './main.css'
 
+window.store = store
 const root = createRoot(document.getElementById('root') as HTMLElement)
 
 let rerenderTree = (): void => {

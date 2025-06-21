@@ -6,7 +6,7 @@ const store = {
     value: 0,
   },
 
-  subscribe(observer: any) {
+  subscribe(observer: () => void) {
     this._subscriber = observer
   },
 
@@ -14,14 +14,21 @@ const store = {
     return this._state
   },
 
-  inc() {
-    this._state.value++
-    this._subscriber()
-  },
+  dispatch(action: { type: string, payload: any }) {
+    switch (action.type) {
+      case "INC":
+        this._state.value++
+        this._subscriber()
+        break;
 
-  dec() {
-    this._state.value--
-    this._subscriber()
+      case "DEC":
+        this._state.value--
+        this._subscriber()
+        break;
+
+      default:
+        return this._state
+    }
   },
 }
 

@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = () => {
     <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
       <Button
         onClick={() => {
-          store.inc()
+          store.dispatch({ type: "INC", payload: "" })
         }}
         variant="contained">+</Button>
 
@@ -21,7 +21,7 @@ const Layout: React.FC<LayoutProps> = () => {
 
       <Button
         onClick={() => {
-          store.dec()
+          store.dispatch({ type: "DEC", payload: "" })
         }}
         variant="contained">-</Button>
     </Box>

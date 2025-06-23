@@ -1,3 +1,4 @@
+import { ADD_100, DEC, INC } from "./actions"
 
 const store = {
   _subscriber: () => { },
@@ -16,13 +17,18 @@ const store = {
 
   dispatch(action: { type: string, payload: any }) {
     switch (action.type) {
-      case "INC":
+      case INC:
         this._state.value++
         this._subscriber()
         break;
 
-      case "DEC":
+      case DEC:
         this._state.value--
+        this._subscriber()
+        break;
+
+      case ADD_100:
+        this._state.value += action.payload
         this._subscriber()
         break;
 

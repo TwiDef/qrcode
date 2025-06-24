@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Button, Typography } from '@mui/material';
 import store from './warehouse/store';
+import { Box, Button, Typography } from '@mui/material';
 import { add_100, decrement, increment } from './warehouse/actions';
 
 type LayoutProps = {
@@ -17,7 +17,7 @@ const Layout: React.FC<LayoutProps> = () => {
           onClick={() => store.dispatch(increment())}
           variant="contained">+</Button>
 
-        <Typography sx={{ textAlign: "center", fontSize: "30px" }}>{state.value}</Typography>
+        <Typography sx={{ textAlign: "center", fontSize: "30px" }}>{state.counter.value}</Typography>
 
         <Button
           onClick={() => store.dispatch(decrement())}

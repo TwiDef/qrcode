@@ -1,7 +1,8 @@
 import React from 'react';
 import store from './warehouse/store';
 import { Box, Button, Typography } from '@mui/material';
-import { add_100, decrement, increment } from './warehouse/actions';
+import { decrement, increment } from './warehouse/reducers/counter-reducer/actions';
+import { getPosts } from './utils/network';
 
 type LayoutProps = {
 
@@ -9,6 +10,10 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = () => {
   const state = store.getState()
+
+  React.useEffect(() => {
+    getPosts("https://dummyjson.com/posts")
+  }, [])
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
@@ -23,11 +28,13 @@ const Layout: React.FC<LayoutProps> = () => {
           onClick={() => store.dispatch(decrement())}
           variant="contained">-</Button>
       </Box>
-      <Button
-        onClick={() => store.dispatch(add_100(100))}
-        sx={{ width: "200px" }}
-        size='large'
-        variant="outlined">ADD 100</Button>
+
+      <ul>
+        {state.json && state.json.posts.map(post => {
+          return <li key={post.id}>{post.title}</li>
+        })}
+      </ul>
+
     </Box>
   )
 }

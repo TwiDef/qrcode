@@ -1,14 +1,13 @@
 import React from 'react';
 import store from './warehouse/store';
-import { Box, Button, Typography } from '@mui/material';
-import { decrement, increment } from './warehouse/reducers/counter-reducer/actions';
+import { Box, Stack } from '@mui/material';
 import { getPosts } from './utils/network';
+import { pallete } from './colors';
 
-type LayoutProps = {
+import CodeGenerator from './components/CodeGenerator';
+import CodeInput from './components/CodeInput/CodeInput';
 
-}
-
-const Layout: React.FC<LayoutProps> = () => {
+const Layout: React.FC = () => {
   const state = store.getState()
 
   React.useEffect(() => {
@@ -16,25 +15,18 @@ const Layout: React.FC<LayoutProps> = () => {
   }, [])
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-      <Box sx={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <Button
-          onClick={() => store.dispatch(increment())}
-          variant="contained">+</Button>
-
-        <Typography sx={{ textAlign: "center", fontSize: "30px" }}>{state.counter.value}</Typography>
-
-        <Button
-          onClick={() => store.dispatch(decrement())}
-          variant="contained">-</Button>
-      </Box>
-
-      <ul>
-        {state.json && state.json.posts.map(post => {
-          return <li key={post.id}>{post.title}</li>
-        })}
-      </ul>
-
+    <Box sx={{
+      display: "flex",
+      alignItems: "center",
+      flexDirection: "column",
+      padding: "1rem",
+      height: "100dvh",
+      bgcolor: pallete.DARK_GREY
+    }}>
+      <Stack sx={{ gap: 5 }}>
+        <CodeGenerator />
+        <CodeInput />
+      </Stack>
     </Box>
   )
 }

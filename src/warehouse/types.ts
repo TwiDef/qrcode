@@ -9,9 +9,16 @@ export type TJson = {
   total: number
 }
 
+export type TQRCodeData = {
+  codeSchema: string,
+  inputValue: string
+}
+
+
 export interface IState {
   counter: TCounter,
-  json: TJson | null
+  json: TJson | null,
+  qrcodeData: TQRCodeData
 }
 
 export interface IAction {

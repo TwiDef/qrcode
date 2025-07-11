@@ -4,6 +4,8 @@ import { pallete } from '../../colors';
 import { QRCodeSVG } from 'qrcode.react';
 import { Box } from '@mui/material';
 
+import QRCodePlug from "./../../assets/images/qr-code.png";
+
 const CodeGenerator: React.FC = () => {
   const state = store.getState()
   const codeSchema = state.qrcodeData.codeSchema
@@ -15,10 +17,15 @@ const CodeGenerator: React.FC = () => {
       padding: "1rem",
       width: "fit-content"
     }}>
-      <QRCodeSVG
-        size={256}
-        bgColor={pallete.LIGHT_GREY}
-        value={codeSchema} />
+
+      {!codeSchema ?
+        <img src={QRCodePlug} alt="plug" /> :
+
+        <QRCodeSVG
+          size={256}
+          bgColor={pallete.LIGHT_GREY}
+          value={codeSchema} />
+      }
     </Box>
   );
 };

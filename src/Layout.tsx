@@ -6,6 +6,7 @@ import { pallete } from './colors';
 
 import CodeGenerator from './components/CodeGenerator';
 import CodeInput from './components/CodeInput/CodeInput';
+import CodeScanner from './components/CodeScanner';
 
 const Layout: React.FC = () => {
   const state = store.getState()
@@ -20,13 +21,13 @@ const Layout: React.FC = () => {
       alignItems: "center",
       flexDirection: "column",
       padding: "1rem",
-      height: "100dvh",
       bgcolor: pallete.DARK_GREY
     }}>
       <Stack sx={{ gap: 5 }}>
         <CodeGenerator />
         <CodeInput />
       </Stack>
+      <CodeScanner />
     </Box>
   )
 }

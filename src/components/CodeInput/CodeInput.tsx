@@ -22,8 +22,8 @@ const CodeInput: React.FC = () => {
       <TextField
         value={state.qrcodeData.inputValue}
         onChange={(e) => onChangeInput(e.target.value)}
-        id="outlined-search"
-        label="Generated Info"
+        id="generated-info"
+        label="type your info here"
         type="text"
         fullWidth
         sx={{
